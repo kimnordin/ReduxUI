@@ -9,4 +9,4 @@
 public protocol Action {}
 
 // Represent an Action dispatcher.
-typealias Dispatch = (Action) -> Void
+public typealias Dispatch = (Action) -> Void
