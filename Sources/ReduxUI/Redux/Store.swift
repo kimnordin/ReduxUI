@@ -18,7 +18,7 @@ protocol StoreProtocol {
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
 public class Store<State: StateType>: StoreProtocol, ObservableObject {
-    @Published private(set) var state: State
+    @Published public private(set) var state: State
     private let reducer: Reducer<State>
     private var middlewares: [Middleware<State>]
     private lazy var dispatchFunction: Dispatch = createDispatchFunction()
