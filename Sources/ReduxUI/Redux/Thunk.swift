@@ -7,12 +7,14 @@
 
 // A Thunk to perform asynchronous or chained operations.
 
+@available(iOS 13.0, *)
 @available(macOS 10.15, *)
 protocol ThunkAction: Action {
     associatedtype State: StateType
     func execute(with store: Store<State>)
 }
 
+@available(iOS 13.0, *)
 @available(macOS 10.15, *)
 struct AnyThunkAction<State: StateType>: ThunkAction {
     private let _execute: (Store<State>) -> Void
@@ -26,6 +28,7 @@ struct AnyThunkAction<State: StateType>: ThunkAction {
     }
 }
 
+@available(iOS 13.0, *)
 @available(macOS 10.15, *)
 struct Thunk<AssociatedState: StateType>: ThunkAction {
     typealias State = AssociatedState
