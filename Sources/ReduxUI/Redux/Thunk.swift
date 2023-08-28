@@ -6,19 +6,37 @@
 //
 
 // A Thunk to perform asynchronous or chained operations.
-protocol ThunkAction: Action where StateType: Equatable {
-    associatedtype StateType
-    func execute(with store: Store<StateType>)
+
+@available(macOS 10.15, *)
+protocol ThunkAction: Action {
+    associatedtype State: StateType
+    func execute(with store: Store<State>)
 }
 
-struct Thunk<State: StateType>: ThunkAction {
+@available(macOS 10.15, *)
+struct AnyThunkAction<State: StateType>: ThunkAction {
+    private let _execute: (Store<State>) -> Void
+    
+    init<T: ThunkAction>(_ thunkAction: T) where T.State == State {
+        _execute = thunkAction.execute
+    }
+    
+    func execute(with store: Store<State>) {
+        _execute(store)
+    }
+}
+
+@available(macOS 10.15, *)
+struct Thunk<AssociatedState: StateType>: ThunkAction {
+    typealias State = AssociatedState
+    
     let thunk: (@escaping Dispatch, @escaping () -> State?) -> Void
 
     init(_ thunk: @escaping (@escaping Dispatch, @escaping () -> State?) -> Void) {
         self.thunk = thunk
     }
 
-    func execute(dispatch: @escaping Dispatch, getState: @escaping () -> State?) {
-        thunk(dispatch, getState)
+    func execute(with store: Store<State>) {
+        thunk(store.dispatch, { store.state })
     }
 }
