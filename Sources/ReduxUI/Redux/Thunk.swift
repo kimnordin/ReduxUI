@@ -31,11 +31,11 @@ struct AnyThunkAction<State: StateType>: ThunkAction {
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
 public struct Thunk<AssociatedState: StateType>: ThunkAction {
-    typealias State = AssociatedState
+    public typealias State = AssociatedState
     
     let thunk: (@escaping Dispatch, @escaping () -> State?) -> Void
 
-    init(_ thunk: @escaping (@escaping Dispatch, @escaping () -> State?) -> Void) {
+    public init(_ thunk: @escaping (@escaping Dispatch, @escaping () -> State?) -> Void) {
         self.thunk = thunk
     }
 
