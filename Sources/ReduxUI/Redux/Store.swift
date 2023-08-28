@@ -15,6 +15,7 @@ protocol StoreProtocol {
     func dispatch(_ action: Action)
 }
 
+@available(iOS 13.0, *)
 @available(macOS 10.15, *)
 class Store<State: StateType>: StoreProtocol, ObservableObject {
     @Published private(set) var state: State
