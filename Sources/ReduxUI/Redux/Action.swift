@@ -6,7 +6,7 @@
 //
 
 // Action to dispatch to the Store.
-protocol Action {}
+public protocol Action {}
 
 // Represent an Action dispatcher.
 typealias Dispatch = (Action) -> Void

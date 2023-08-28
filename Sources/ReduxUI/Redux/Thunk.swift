@@ -30,7 +30,7 @@ struct AnyThunkAction<State: StateType>: ThunkAction {
 
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
-struct Thunk<AssociatedState: StateType>: ThunkAction {
+public struct Thunk<AssociatedState: StateType>: ThunkAction {
     typealias State = AssociatedState
     
     let thunk: (@escaping Dispatch, @escaping () -> State?) -> Void

@@ -6,4 +6,4 @@
 //
 
 // A State which can be equated for changes.
-protocol StateType: Equatable {}
+public protocol StateType: Equatable {}

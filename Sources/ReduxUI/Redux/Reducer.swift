@@ -6,4 +6,4 @@
 //
 
 // Represents a Reducer function to mutate the state.
-typealias Reducer<State> = (State, Action) -> State
+public typealias Reducer<State> = (State, Action) -> State

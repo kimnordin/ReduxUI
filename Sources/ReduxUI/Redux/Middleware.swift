@@ -6,4 +6,4 @@
 //
 
 // Represents a Middleware for pre- or post-processing actions.
-typealias Middleware<State> = (@escaping Dispatch, @escaping () -> State?) -> (@escaping Dispatch) -> Dispatch
+public typealias Middleware<State> = (@escaping Dispatch, @escaping () -> State?) -> (@escaping Dispatch) -> Dispatch
