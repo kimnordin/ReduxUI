@@ -23,7 +23,7 @@ public class Store<State: StateType>: StoreProtocol, ObservableObject {
     private var middlewares: [Middleware<State>]
     private lazy var dispatchFunction: Dispatch = createDispatchFunction()
 
-    init(state: State, reducer: @escaping Reducer<State>, middlewares: [Middleware<State>] = []) {
+    public init(state: State, reducer: @escaping Reducer<State>, middlewares: [Middleware<State>] = []) {
         self.state = state
         self.reducer = reducer
         self.middlewares = middlewares
