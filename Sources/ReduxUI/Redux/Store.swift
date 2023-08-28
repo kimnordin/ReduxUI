@@ -38,7 +38,7 @@ public class Store<State: StateType>: StoreProtocol, ObservableObject {
     }
     
     public func dispatch(_ action: Action) {
-        if let thunkAction = action as? AnyThunkAction<State> {
+        if let thunkAction = action as? Thunk<State> {
             thunkAction.execute(with: self)
         } else {
             dispatchFunction(action)
