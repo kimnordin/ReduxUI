@@ -15,7 +15,7 @@ protocol StoreSubscriber {
 
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
-class Store<State: StateType>: ObservableObject {
+public class Store<State: StateType>: ObservableObject {
     @Published public private(set) var state: State
     private let reducer: Reducer<State>
     private var dispatchFunction: Dispatch!
