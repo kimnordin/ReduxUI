@@ -21,4 +21,3 @@ public struct Thunk<AssociatedState: StateType>: Action {
         thunk(store.dispatch, { store.state })
     }
 }
-
