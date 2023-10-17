@@ -16,11 +16,11 @@ protocol StoreSubscriber {
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
 class Store<State: StateType>: ObservableObject {
-    @Published private(set) var state: State
+    @Published public private(set) var state: State
     private let reducer: Reducer<State>
     private var dispatchFunction: Dispatch!
     
-    init(state: State, reducer: @escaping Reducer<State>, middlewares: [Middleware<State>] = []) {
+    public init(state: State, reducer: @escaping Reducer<State>, middlewares: [Middleware<State>] = []) {
         self.state = state
         self.reducer = reducer
         
@@ -35,7 +35,7 @@ class Store<State: StateType>: ObservableObject {
     }
     
     // To Middleware
-    func dispatch(_ action: Action) {
+    public func dispatch(_ action: Action) {
         if let thunkAction = action as? Thunk<State> {
             thunkAction.execute(with: self)
         } else {
@@ -44,7 +44,7 @@ class Store<State: StateType>: ObservableObject {
     }
     
     // To Reducer
-    private func _dispatch(action: Action) {
+    public func _dispatch(action: Action) {
         state = reducer(state, action)
     }
 }
