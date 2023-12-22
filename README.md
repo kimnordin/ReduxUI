@@ -18,7 +18,17 @@ Redux SwiftUI Library is a robust and type-safe framework designed to help devel
 
 ### Installation
 
-[Installation instructions]
+ReduxUI can be installed using Swift Package Manager.
+
+1. **Open Your Project in Xcode:**
+Start by opening your Swift project in Xcode.
+2. **Add Package Dependency:**
+  •	Go to File → Swift Packages → Add Package Dependency.
+  •	Paste the URL of the ReduxUI GitHub repository: https://github.com/kimnordin/ReduxUI.git.
+3. **Specify the Version:**
+Choose the version of the ReduxUI package you want to add. You can specify a version number, a branch, or a commit.
+4. **Add to Your Target:**
+After Xcode loads the package and its dependencies, select the ReduxUI library, and add it to your project’s target(s).
 
 ### Basic Usage
 
