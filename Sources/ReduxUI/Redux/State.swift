@@ -5,5 +5,7 @@
 //  Created by Kim Nordin on 2023-08-28.
 //
 
-// A State which can be equated for changes.
+/**
+ Represents an application's state.
+ */
 public protocol StateType: Equatable {}

@@ -5,8 +5,13 @@
 //  Created by Kim Nordin on 2023-08-28.
 //
 
-// Action to dispatch to the Store.
+/**
+ Dispatched action that modifies the state through the reducer.
+ */
 public protocol Action {}
 
-// Represent an Action dispatcher.
+/**
+ Dispatches an action to the reducer.
+ - parameter action: The action to be dispatched.
+ */
 public typealias Dispatch = (Action) -> Void
