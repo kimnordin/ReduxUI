@@ -51,6 +51,6 @@ public class Store<State: StateType>: ObservableObject {
     
     // To Reducer
     public func _dispatch(action: Action) {
-        state = reducer(state, action)
+        state = reducer(action, state)
     }
 }
