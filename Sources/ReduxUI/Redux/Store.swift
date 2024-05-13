@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-// Represents the main application Store.
-
 protocol StoreSubscriber {
     func newState(_ state: any StateType)
 }
 
+/**
+ Main store of the application which holds the entire state.
+ 
+ The store manages the lifecycle of state changes, handles dispatching actions to reducers, and notifies subscribers about state updates.
+ - parameter state: The initial state of the application.
+ - parameter reducer: A function responsible for handling state changes in response to actions.
+ - parameter middlewares: An array of middleware functions that can intercept, modify, or asynchronously handle actions before they reach the reducer.
+ */
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
 public class Store<State: StateType>: ObservableObject {
