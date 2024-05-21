@@ -9,11 +9,11 @@
  Defines a subscriber of state updates.
  */
 public protocol StoreSubscriber {
-    associatedtype State: StateType
+    associatedtype StoreState: StateType
     
     /**
      Called whenever the store's state changes.
      - parameter state: The new state from the store.
      */
-    func newState(_ state: State)
+    func newState(_ state: StoreState)
 }
