@@ -1,6 +1,6 @@
 //
 //  Middleware.swift
-//  
+//  ReduxUI
 //
 //  Created by Kim Nordin on 2023-08-28.
 //

@@ -1,15 +1,11 @@
 //
 //  Store.swift
-//  
+//  ReduxUI
 //
 //  Created by Kim Nordin on 2023-08-28.
 //
 
 import SwiftUI
-
-protocol StoreSubscriber {
-    func newState(_ state: any StateType)
-}
 
 /**
  Main store of the application which holds the entire state.
