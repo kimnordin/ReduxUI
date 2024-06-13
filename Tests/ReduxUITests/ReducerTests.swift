@@ -17,6 +17,6 @@ class ReducerTests: XCTestCase {
         let expectedState = AppState(value: 0)
         
         let newState = appReducer(action, initialState)
-        XCTAssertEqual(newState, expectedState, "Reducer should increment the state value.")
+        XCTAssertEqual(newState, expectedState, "Reducer should decrement the state value.")
     }
 }
