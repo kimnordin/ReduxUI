@@ -2,7 +2,7 @@
 Swiftly manage and structure your SwiftUI application state with the Redux design pattern.
 
 ## Introduction
-Redux SwiftUI Library is a robust and type-safe framework designed to help developers manage app-wide state more predictably. By leveraging a single source of truth and a unidirectional flow of data, this library promotes more maintainable, debuggable, and scalable SwiftUI apps.
+Redux SwiftUI Library is a robust framework designed to help developers manage app-wide state more predictably. By leveraging a single source of truth and a unidirectional flow of data, this library promotes more maintainable, debuggable, and scalable SwiftUI apps.
 
 ## Features
 - **Single Source of Truth**: All of your app's state is stored in a single store, making debugging and state observation easier.
@@ -52,5 +52,6 @@ store.dispatch(RefreshAction())
 - **Middleware**: Extend your store with custom functionalities.
 - **Thunks**: Dispatch async actions and handle complex operations.
 
-## Example
-The [TestReduxUI](https://github.com/kimnordin/TestReduxUI) App provides a simple implementation of the ReduxUI library.
+## Examples
+- The [TestReduxUI](https://github.com/kimnordin/TestReduxUI) Repository provides a simple Counter App made with the ReduxUI library.
+- The [WalkApp](https://github.com/kimnordin/WalkApp) Repository highlights a more complex Step Counting App relying heavily on the ReduxUI library.
