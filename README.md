@@ -2,7 +2,9 @@
 Swiftly manage and structure your SwiftUI application state with the Redux design pattern.
 
 ## Introduction
-Redux SwiftUI Library is a robust and type-safe framework designed to help developers manage app-wide state more predictably. By leveraging a single source of truth and a unidirectional flow of data, this library promotes more maintainable, debuggable, and scalable SwiftUI apps.
+Redux SwiftUI Library is a robust framework designed to help developers manage app-wide state more predictably. By leveraging a single source of truth and a unidirectional flow of data, this library promotes more maintainable, debuggable, and scalable SwiftUI apps.
+
+<img width="50%" alt="ReduxUI Flow" src="https://github.com/kimnordin/ReduxUI/assets/12212744/233f882c-41df-4de9-88b2-e47b9e5d4a32">
 
 ## Features
 - **Single Source of Truth**: All of your app's state is stored in a single store, making debugging and state observation easier.
@@ -26,31 +28,66 @@ Choose the version of the ReduxUI package you want to add. You can specify a ver
 After Xcode loads the package and its dependencies, select the ReduxUI library, and add it to your project’s target(s).
 
 ### Basic Usage
-1. **Define your app state:**
+1. **Define your App States:**
 ```swift
+// Main State of your App, containing all other States
 struct AppState: StateType {
-    // Your app-specific state properties
+    var dataState: DataState = DataState()
+}
+
+struct UserState: StateType {
+    var name: String
 }
 ```
 
-2. **Create a store:**
+2. **Set up your Actions:**
 ```swift
-let store = Store<AppState>(state: initialAppState, reducer: appReducer)
+struct UpdateUserName: Action {
+    let name: String
+}
 ```
 
-3. **Use within SwiftUI:**
+3. **Create the Reducers:**
 ```swift
-@EnvironmentObject var store: Store<AppState>
+// Main Reducer handling Actions, updating the AppState accordingly
+func appReducer(action: Action, state: AppState?) -> AppState {
+    let state = state ?? AppState()
+    
+    return AppState(userState: userReducer(action: action, state: state.userState))
+}
+
+func userReducer(action: Action, state: UserState?) -> UserState {
+    var state = state ?? UserState()
+    
+    switch action {
+    case let action as UpdateUserName:
+        state.name = action.name
+    default: break
+    }
+    
+    return state
+}
 ```
 
-4. **Dispatch actions to modify the state:**
+4. **Create a Store:**
 ```swift
-store.dispatch(RefreshAction())
+let store = Store<AppState>(state: AppState(), reducer: appReducer)
+```
+
+5. **Use within SwiftUI:**
+```swift
+@EnvironmentObject private var store: Store<AppState>
+```
+
+6. **Dispatch Actions to modify the State:**
+```swift
+store.dispatch(UpdateUserName(name: "Kim"))
 ```
 
 ### Advanced Usage
 - **Middleware**: Extend your store with custom functionalities.
 - **Thunks**: Dispatch async actions and handle complex operations.
 
-## Example
-The [TestReduxUI](https://github.com/kimnordin/TestReduxUI) App provides a simple implementation of the ReduxUI library.
+## Examples
+- The [TestReduxUI](https://github.com/kimnordin/TestReduxUI) Repository provides a simple Counter App made with the ReduxUI library.
+- The [WalkApp](https://github.com/kimnordin/WalkApp) Repository highlights a more complex Step Counting App relying heavily on the ReduxUI library.
