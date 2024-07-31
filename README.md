@@ -32,7 +32,7 @@ After Xcode loads the package and its dependencies, select the ReduxUI library, 
 ```swift
 // Main State of your App, containing all other States
 struct AppState: StateType {
-    var dataState: DataState = DataState()
+    var userState: UserState = UserState()
 }
 
 struct UserState: StateType {
