@@ -36,7 +36,10 @@ public class Store<State: StateType>: ObservableObject {
             })
     }
     
-    // To Middleware
+    /**
+     Dispatches an action through the middleware chain or directly executes a `Thunk`.
+     - parameter action: The action to be dispatched.
+     */
     public func dispatch(_ action: Action) {
         if let thunkAction = action as? Thunk<State> {
             thunkAction.execute(with: self)
@@ -45,8 +48,12 @@ public class Store<State: StateType>: ObservableObject {
         }
     }
     
-    // To Reducer
-    public func _dispatch(action: Action) {
+    /**
+     Directly applies an action to the reducer to update the state.
+     - parameter action: The action to be reduced.
+     - note: This method is internal, and ensures that all actions go through the middleware chain and are properly handled before updating the state.
+     */
+    private func _dispatch(action: Action) {
         state = reducer(action, state)
     }
 }
