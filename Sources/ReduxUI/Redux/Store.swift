@@ -27,8 +27,8 @@ public class Store<State: StateType>: ObservableObject {
         self.reducer = reducer
         
         self.dispatchFunction = middlewares
-            .reduce({ [unowned self] action in
-                self._dispatch(action: action)
+            .reduce({ [weak self] action in
+                self?._dispatch(action: action)
             }, { dispatchFunction, middleware in
                 let dispatch: (Action) -> Void = { [weak self] in self?.dispatch($0) }
                 let getState = { [weak self] in self?.state }
